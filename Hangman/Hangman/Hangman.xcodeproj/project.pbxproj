@@ -13,6 +13,7 @@
 		ECC22F4D1C89177600749E58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC22F4B1C89177600749E58 /* LaunchScreen.storyboard */; };
 		ECC22F7C1C891A6700749E58 /* phrases.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECC22F7B1C891A6700749E58 /* phrases.plist */; };
 		ECC22F7E1C891CF800749E58 /* HangmanPhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22F7D1C891CF800749E58 /* HangmanPhrases.swift */; };
+		F1812216216D20F800BE4933 /* HangmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1812215216D20F800BE4933 /* HangmanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		ECC22F4E1C89177600749E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC22F7B1C891A6700749E58 /* phrases.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = phrases.plist; sourceTree = "<group>"; };
 		ECC22F7D1C891CF800749E58 /* HangmanPhrases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanPhrases.swift; sourceTree = "<group>"; };
+		F1812215216D20F800BE4933 /* HangmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -81,6 +83,7 @@
 		ECC22F721C8917D300749E58 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F1812215216D20F800BE4933 /* HangmanViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC22F7E1C891CF800749E58 /* HangmanPhrases.swift in Sources */,
+				F1812216216D20F800BE4933 /* HangmanViewController.swift in Sources */,
 				140C8F04202D298200F834A2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
