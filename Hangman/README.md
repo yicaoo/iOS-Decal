@@ -14,7 +14,7 @@ In this project, you will be making an iOS application for the Hangman game. Use
 
 Though we do not have many requirements for this project, you are encouraged to customize your app. Here's a screenshot from a past project submission for some inspiration:
 
-![alt text](/README-images/hangman.png)
+![alt text](./README-images/hangman.png)
 
 ## getting started ##
 To submit, add your hw2 folder to a private repository. You can find detailed instructions on how to add your assignment to a repo [here](http://iosdecal.com/other_files/submission_instructions.pdf).
