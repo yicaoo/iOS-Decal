@@ -19,13 +19,14 @@ class HangmanGame {
         } else {
             if !incorrectLetters.contains(letter) {
                 incorrectLetters.append(letter)
-                if incorrectLetters.count >= HangmanGameConstant.numGuessesTotal {
+                if incorrectLetters.count >= HangmanGameConstant.numGuessesTotal {        // the user loses the game. Model send notification to view controller which then presents alert
             NotificationCenter.default.post(name: .gameOver, object: self)
                 }
             }
         }
     }
     
+    // update the phrase according to user's new guess
     private func updateProgressPhrase(forLetter letter: Character) {
         var updateString = ""
         for (index, char) in gamePhrase.enumerated() {
@@ -37,6 +38,7 @@ class HangmanGame {
             }
         }
         progressPhrase = updateString
+        // the user wins the game. Model send notification to view controller which then presents alert
         if !progressPhrase.contains(HangmanGameConstant.hide
             ) {
             NotificationCenter.default.post(name: .gameWin, object: self)
