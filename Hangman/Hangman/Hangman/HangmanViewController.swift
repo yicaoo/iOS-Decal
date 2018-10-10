@@ -20,7 +20,6 @@ class HangmanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
-        // observers to listen to model notification about game status
         gameOverObserver = NotificationCenter.default.addObserver(forName: .gameOver, object: nil, queue: OperationQueue.main) { (notification) in
             self.issueAlert(HangmanAlertConstant.loseMessage)
         }
@@ -30,6 +29,7 @@ class HangmanViewController: UIViewController {
     }
     
     @IBOutlet weak var hangmanImage: UIImageView!
+    
     
     @IBAction func enterGuess(_ sender: UIButton) {
         if let letter = sender.titleLabel?.text {
@@ -47,13 +47,12 @@ class HangmanViewController: UIViewController {
     @IBAction func restartGame(_ sender: UIButton) {
         restart()
     }
-    
     private func restart() {
         currentGuess.text = HangmanUIConstant.guess
+        //currentGuess = nil
         game.restart()
         updateViewFromModel()
     }
-    
     private func updateViewFromModel() {
         hangmanProgress.text = game.progressPhrase
         incorrectGuesses.text = HangmanUIConstant.incorrect +  game.incorrectLetters
@@ -62,7 +61,6 @@ class HangmanViewController: UIViewController {
         print(game.gamePhrase)
     }
     
-    // generic helper function to pass winning and losing alerts
     private func issueAlert(_ message: String) {
         let alert = UIAlertController(title: HangmanAlertConstant.newGame, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: HangmanAlertConstant.startAction, style: .default, handler: {action in
@@ -81,7 +79,6 @@ class HangmanViewController: UIViewController {
         }
     }
     
-    // -MARK: Constants
     private struct HangmanUIConstant {
         static let  guess = "Guess: "
         static let incorrect = "Incorrect Guesses: "
