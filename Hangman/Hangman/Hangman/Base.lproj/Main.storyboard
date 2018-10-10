@@ -26,25 +26,25 @@
                                 <rect key="frame" x="28" y="28" width="358" height="700"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="hangman1" translatesAutoresizingMaskIntoConstraints="NO" id="nPq-iR-KT9">
-                                        <rect key="frame" x="79" y="0.0" width="200" height="311"/>
+                                        <rect key="frame" x="79" y="0.0" width="200" height="201"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" axis="vertical" distribution="fillEqually" alignment="top" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDd-Pd-P5R">
-                                        <rect key="frame" x="105" y="319" width="148.33333333333337" height="106"/>
+                                        <rect key="frame" x="105.00000000000001" y="209" width="148.33333333333337" height="316"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-JI-SHL">
-                                                <rect key="frame" x="0.0" y="0.0" width="41.666666666666664" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-JI-SHL">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="103"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect Guesses: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4e-MX-3sb">
-                                                <rect key="frame" x="0.0" y="36.666666666666686" width="148.33333333333334" height="32.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="106.33333333333331" width="148.33333333333334" height="103"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Guess: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdV-gm-Qvd" userLabel="Current Guess:">
-                                                <rect key="frame" x="0.0" y="73" width="119.66666666666667" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdV-gm-Qvd" userLabel="Current Guess:">
+                                                <rect key="frame" x="0.0" y="213" width="57.333333333333336" height="103"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -52,10 +52,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKe-tP-1nA">
-                                        <rect key="frame" x="50" y="433" width="258" height="267"/>
+                                        <rect key="frame" x="50" y="533" width="258" height="167"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ftc-xK-DWh">
-                                                <rect key="frame" x="0.0" y="0.0" width="258" height="267"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="258" height="167"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rBi-uW-9n6">
                                                         <rect key="frame" x="0.0" y="0.0" width="258" height="144"/>
@@ -66,30 +66,51 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUq-Cn-fqU">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="A"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="7IS-At-fqH"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82G-jw-wN7">
                                                                         <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="B"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="FNq-qy-fDn"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-W5-edn">
                                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="C"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="gXW-ca-2oK"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeb-ZM-UfH">
                                                                         <rect key="frame" x="114" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="D"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="0tt-pU-cxf"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIc-6r-g57">
                                                                         <rect key="frame" x="152" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="E"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="9t8-zx-ehv"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doQ-Jy-F0t">
                                                                         <rect key="frame" x="190" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="F"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="jlw-6O-GT1"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIy-uN-GCA">
                                                                         <rect key="frame" x="228" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="G"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="xL1-2T-Sqa"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -99,30 +120,51 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ol-fM-Rzo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="H"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="1hU-jf-IZV"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dm-b5-oaB">
                                                                         <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="I"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="9Lb-zK-6Vh"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbu-DF-uCn">
                                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="J"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="NYm-Iv-Ei1"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-49-eIb">
                                                                         <rect key="frame" x="114" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="K"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="CcK-al-BwJ"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcq-JA-63x">
                                                                         <rect key="frame" x="152" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="L"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="bOy-Pf-OlO"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKg-rH-kTD">
                                                                         <rect key="frame" x="190" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="M"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="NJy-EX-XQv"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVG-VA-QGr">
                                                                         <rect key="frame" x="228" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="N"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="AnJ-QL-ksT"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -132,30 +174,51 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6f-rz-C0E">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="O"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="d0B-ON-UvJ"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLH-05-T89">
                                                                         <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="P"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="9OV-TN-Gl2"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIg-Jl-gfD">
                                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="Q"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="sax-hv-xgT"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvC-lJ-EWa">
                                                                         <rect key="frame" x="114" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="R"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="sSf-rq-FPL"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7t-cv-Jc2">
                                                                         <rect key="frame" x="152" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="S"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="I5P-Ua-6NH"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fme-z3-rXq">
                                                                         <rect key="frame" x="190" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="T"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="hqI-Rz-DQM"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9d-0f-9XO">
                                                                         <rect key="frame" x="228" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="U"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="5Xq-g6-BTD"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -165,37 +228,58 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJR-Lg-j57">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="V"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="2qD-xP-d7x"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhO-8v-QoS">
                                                                         <rect key="frame" x="38" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="W"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="yhr-cP-hDS"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQw-TJ-Atw">
                                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="X"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="WJg-GW-1wo"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijI-mD-hAU">
                                                                         <rect key="frame" x="114" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="Y"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="XPQ-PH-7wQ"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-7Y-nJf">
                                                                         <rect key="frame" x="152" y="0.0" width="30" height="30"/>
                                                                         <state key="normal" title="Z"/>
+                                                                        <connections>
+                                                                            <action selector="enterGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="ZuM-0s-C1B"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="8" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CeY-Fs-qxk">
-                                                        <rect key="frame" x="0.0" y="152" width="258" height="115"/>
+                                                        <rect key="frame" x="0.0" y="152" width="258" height="15"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbm-BS-0g2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="125" height="115"/>
-                                                                <state key="normal" title="Guess"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="125" height="15"/>
+                                                                <state key="normal" title="Enter"/>
+                                                                <connections>
+                                                                    <action selector="makeGuess:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="xwQ-EF-KQQ"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkw-fU-d4F">
-                                                                <rect key="frame" x="133" y="0.0" width="125" height="115"/>
+                                                                <rect key="frame" x="133" y="0.0" width="125" height="15"/>
                                                                 <state key="normal" title="Start Over"/>
+                                                                <connections>
+                                                                    <action selector="restartGame:" destination="v4K-Qs-DWV" eventType="touchUpInside" id="ct8-lw-dNC"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -215,6 +299,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="aBt-y5-EIG" secondAttribute="trailing" constant="8" id="bX1-5e-SDE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentGuess" destination="pdV-gm-Qvd" id="oA5-F5-3kv"/>
+                        <outlet property="hangmanImage" destination="nPq-iR-KT9" id="tix-aR-aMT"/>
+                        <outlet property="hangmanProgress" destination="6fz-JI-SHL" id="OTJ-0Z-D8k"/>
+                        <outlet property="incorrectGuesses" destination="k4e-MX-3sb" id="VCv-Li-A5a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnl-AH-zUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

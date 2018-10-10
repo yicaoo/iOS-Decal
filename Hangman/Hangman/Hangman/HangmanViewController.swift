@@ -9,22 +9,85 @@
 import UIKit
 
 class HangmanViewController: UIViewController {
+     private lazy var game: HangmanGame = HangmanGame()
+    @IBOutlet weak var hangmanProgress: UILabel!
+    
+    @IBOutlet weak var incorrectGuesses: UILabel!
+    
+    @IBOutlet weak var currentGuess: UILabel!
+    private var gameOverObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViewFromModel()
+        gameOverObserver = NotificationCenter.default.addObserver(forName: .gameOver, object: nil, queue: OperationQueue.main) { (notification) in
+            self.issueAlert(HangmanAlertConstant.loseMessage)
+        }
+        gameOverObserver = NotificationCenter.default.addObserver(forName: .gameWin, object: nil, queue: OperationQueue.main) { (notification) in
+            self.issueAlert(HangmanAlertConstant.winMessage)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var hangmanImage: UIImageView!
+    
+    
+    @IBAction func enterGuess(_ sender: UIButton) {
+        if let letter = sender.titleLabel?.text {
+            currentGuess.text = HangmanUIConstant.guess + letter
+        }
     }
-    */
-
+    
+    @IBAction func makeGuess(_ sender: UIButton) {
+        if let inputLetter = currentGuess.text {
+            game.checkGuess(forLetter: inputLetter.last!)
+            updateViewFromModel()
+        }
+    }
+    
+    @IBAction func restartGame(_ sender: UIButton) {
+        restart()
+    }
+    private func restart() {
+        currentGuess.text = HangmanUIConstant.guess
+        //currentGuess = nil
+        game.restart()
+        updateViewFromModel()
+    }
+    private func updateViewFromModel() {
+        hangmanProgress.text = game.progressPhrase
+        incorrectGuesses.text = HangmanUIConstant.incorrect +  game.incorrectLetters
+        let imageName = HangmanUIConstant.imageTitle + "\(game.incorrectLetters.count+1)"
+        hangmanImage.image = UIImage(named: imageName)
+        print(game.gamePhrase)
+    }
+    
+    private func issueAlert(_ message: String) {
+        let alert = UIAlertController(title: HangmanAlertConstant.newGame, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: HangmanAlertConstant.startAction, style: .default, handler: {action in
+            self.restart()
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissObservers()
+    }
+    
+    private func dismissObservers() {
+        if let observer = self.gameOverObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
+    private struct HangmanUIConstant {
+        static let  guess = "Guess: "
+        static let incorrect = "Incorrect Guesses: "
+        static let imageTitle = "hangman"
+    }
+    private struct HangmanAlertConstant {
+        static let newGame = "New Game"
+        static let winMessage = "Congratuations! You won!"
+        static let loseMessage = "Sorry! You lost!"
+        static let startAction = "Start"
+    }
 }
