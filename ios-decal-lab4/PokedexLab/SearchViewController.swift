@@ -89,7 +89,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pokeID = sender as? Int, let destination = segue.destination as? CategoryViewController {
             destination.pokemonArray = filteredPokemon(ofType: pokeID)
-            //print(pokeID)
         }
     }
     

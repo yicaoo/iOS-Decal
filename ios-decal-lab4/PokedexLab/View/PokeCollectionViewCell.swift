@@ -10,5 +10,4 @@ import UIKit
 
 class PokeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pokeView: UIImageView!
-    
 }
