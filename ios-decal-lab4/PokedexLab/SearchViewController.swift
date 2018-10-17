@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  PokedexLab
 //
-//  Created by SAMEER SURESH on 2/25/17.
+//  Created by SAMEER SURESH on 2/25/17. Completed by Yi cao on 10/17/18.
 //  Copyright © 2017 iOS Decal. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  CategoryViewController.swift
 //  PokedexLab
 //
-//  Created by SAMEER SURESH on 2/25/17. 
+//  Created by SAMEER SURESH on 2/25/17. Completed by Yi cao on 10/17/18.
 //  Copyright © 2017 iOS Decal. All rights reserved.
 //
 
@@ -32,39 +32,13 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         if let pokeCell = cell as? PokeTableViewCell {
             if let pokeItem = pokemonArray?[indexPath.row] {
                 // load name
-                let nameString = pokeItem.name + " \n" + String(pokeItem.number)
+                let nameString = pokeItem.name + TableViewConstant.nextLine + String(pokeItem.number)
                 pokeCell.Name.text = nameString
                 // load key stats
-                let statsString = String(pokeItem.attack) + "/" + String(pokeItem.defense) + "/" + String(pokeItem.health)
+                let statsString = String(pokeItem.attack) + TableViewConstant.backSlash + String(pokeItem.defense) + TableViewConstant.backSlash + String(pokeItem.health)
                 pokeCell.keyStats.text = statsString
                 // load image
-                if let image = cachedImages[indexPath.row] {
-                    pokeCell.pokemonImageView.image = image
-                } else {
-                    pokeCell.pokemonImageView.image = nil
-                    let url = URL(string: pokeItem.imageUrl)!
-                    let session = URLSession(configuration: .default)
-                    let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
-                        if let e = error {
-                            print("Error downloading picture: \(e)")
-                        } else {
-                            if let _ = response as? HTTPURLResponse {
-                                if let imageData = data {
-                                    let image = UIImage(data: imageData)
-                                    DispatchQueue.main.async {
-                                        self.cachedImages[indexPath.row] = image
-                                        pokeCell.pokemonImageView.image = image // UIImage(data: imageData)
-                                    }
-                                } else {
-                                    print("Couldn't get image: Image is nil")
-                                }
-                            } else {
-                                print("Couldn't get response code")
-                            }
-                        }
-                    }
-                    downloadPicTask.resume()
-                }
+                downloadImage(cell: pokeCell, cellForRowAt: indexPath, pokeItem: pokeItem)
             }
         }
         return cell
@@ -74,6 +48,36 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
        if let cell = sender as? PokeTableViewCell, let destination = segue.destination as? PokemonInfoViewController {
                 let indexPath = pokeTableView.indexPath(for: cell)
                 destination.pokemon = pokemonArray?[indexPath?.row ?? 0]
+        }
+    }
+    
+    private func downloadImage(cell: PokeTableViewCell, cellForRowAt indexPath: IndexPath, pokeItem: Pokemon) {
+        if let image = cachedImages[indexPath.row] {
+            cell.pokemonImageView.image = image
+        } else {
+            cell.pokemonImageView.image = nil
+            let url = URL(string: pokeItem.imageUrl)!
+            let session = URLSession(configuration: .default)
+            let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
+                if let e = error {
+                    print("Error downloading picture: \(e)")
+                } else {
+                    if let _ = response as? HTTPURLResponse {
+                        if let imageData = data {
+                            let image = UIImage(data: imageData)
+                            DispatchQueue.main.async {
+                                self.cachedImages[indexPath.row] = image
+                                cell.pokemonImageView.image = image // UIImage(data: imageData)
+                            }
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code")
+                    }
+                }
+            }
+            downloadPicTask.resume()
         }
     }
     
@@ -92,6 +96,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     private struct TableViewConstant {
         static let height = CGFloat(100)
+        static let nextLine = " \n"
+        static let backSlash = "/"
     }
 
 }
