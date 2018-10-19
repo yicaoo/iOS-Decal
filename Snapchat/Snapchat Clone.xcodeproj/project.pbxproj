@@ -17,6 +17,9 @@
 		4196F2DD1E650ECA009916E4 /* ImageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2DC1E650ECA009916E4 /* ImageFeed.swift */; };
 		4196F2E31E6514EE009916E4 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2E21E6514EE009916E4 /* ImagePickerController.swift */; };
 		4196F2ED1E6609B0009916E4 /* PostNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2EC1E6609B0009916E4 /* PostNavigationController.swift */; };
+		F11B99E7217A52C300C9232B /* ImageFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B99E6217A52C300C9232B /* ImageFeedTableViewController.swift */; };
+		F11B99E9217A560A00C9232B /* ImagePostingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B99E8217A560A00C9232B /* ImagePostingTableViewController.swift */; };
+		F11B99EB217A5C5100C9232B /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B99EA217A5C5100C9232B /* PostImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		4196F2DC1E650ECA009916E4 /* ImageFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeed.swift; sourceTree = "<group>"; };
 		4196F2E21E6514EE009916E4 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		4196F2EC1E6609B0009916E4 /* PostNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostNavigationController.swift; sourceTree = "<group>"; };
+		F11B99E6217A52C300C9232B /* ImageFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedTableViewController.swift; sourceTree = "<group>"; };
+		F11B99E8217A560A00C9232B /* ImagePostingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePostingTableViewController.swift; sourceTree = "<group>"; };
+		F11B99EA217A5C5100C9232B /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 		417986CE1E6657650050E1DF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F11B99EA217A5C5100C9232B /* PostImageTableViewCell.swift */,
 				417986C81E664AE40050E1DF /* ImageCollectionViewCell.swift */,
 			);
 			name = Cells;
@@ -74,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				417986C41E6632C40050E1DF /* TabBarController.swift */,
+				F11B99E8217A560A00C9232B /* ImagePostingTableViewController.swift */,
+				F11B99E6217A52C300C9232B /* ImageFeedTableViewController.swift */,
 				4196F2EC1E6609B0009916E4 /* PostNavigationController.swift */,
 				417986CE1E6657650050E1DF /* Cells */,
 				4196F2E21E6514EE009916E4 /* ImagePickerController.swift */,
@@ -191,6 +200,9 @@
 				4196F2DD1E650ECA009916E4 /* ImageFeed.swift in Sources */,
 				4196F2CB1E6509E8009916E4 /* AppDelegate.swift in Sources */,
 				4196F2ED1E6609B0009916E4 /* PostNavigationController.swift in Sources */,
+				F11B99EB217A5C5100C9232B /* PostImageTableViewCell.swift in Sources */,
+				F11B99E7217A52C300C9232B /* ImageFeedTableViewController.swift in Sources */,
+				F11B99E9217A560A00C9232B /* ImagePostingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

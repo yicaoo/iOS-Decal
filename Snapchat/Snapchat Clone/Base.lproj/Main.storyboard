@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h9b-ww-qVO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h9b-ww-qVO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="TDy-vm-HOI" kind="relationship" relationship="viewControllers" id="Aaa-2E-LvY"/>
+                        <segue destination="MFS-sg-Xtn" kind="relationship" relationship="viewControllers" id="yuw-dq-h46"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfe-rh-Z65" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -45,6 +45,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5c-9q-4ZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-478" y="-425"/>
+        </scene>
+        <!--Image Feed Table View Controller-->
+        <scene sceneID="zkN-SV-K92">
+            <objects>
+                <tableViewController id="z2B-4d-Cwe" customClass="ImageFeedTableViewController" customModule="Snapchat_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pxp-3Y-NMt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ltb-Di-Zg4">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ltb-Di-Zg4" id="BBc-Rr-NvC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z2B-4d-Cwe" id="omO-1j-C9M"/>
+                            <outlet property="delegate" destination="z2B-4d-Cwe" id="rTx-D1-K24"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Phc-nI-DNX"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDd-Ad-p4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="722.39999999999998" y="293.70314842578711"/>
         </scene>
         <!--Snapchat Clone-->
         <scene sceneID="tne-QT-ifu">
@@ -76,7 +105,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2v8-Yu-FIQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="236" height="203"/>
+                                                    <rect key="frame" x="8" y="28" width="220" height="167"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -108,14 +137,97 @@
                     <navigationItem key="navigationItem" title="Snapchat Clone" id="1DI-gn-L1G"/>
                     <connections>
                         <outlet property="imageCollectionView" destination="wYC-QR-9eI" id="lwC-Kg-QfQ"/>
+                        <segue destination="x4z-ZL-mf4" kind="show" identifier="postImage" id="4KT-hB-2Lm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="350" y="-425"/>
         </scene>
+        <!--Image Posting Table View Controller-->
+        <scene sceneID="iGt-tZ-mSD">
+            <objects>
+                <tableViewController id="x4z-ZL-mf4" customClass="ImagePostingTableViewController" customModule="Snapchat_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ISo-Z3-BjU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Yzy-BR-kA7">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Posting To" id="2pp-FN-8yb"/>
+                                <barButtonItem title="Category" id="6XC-gr-AsQ"/>
+                                <barButtonItem title="Item" image="goButton" id="0Bw-tS-dCT">
+                                    <connections>
+                                        <action selector="postSelectedImage:" destination="x4z-ZL-mf4" id="Sm7-lS-TXl"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postLabelCell" id="lMh-lF-ofc" customClass="PostImageTableViewCell" customModule="Snapchat_Clone" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lMh-lF-ofc" id="1fS-Vw-ACe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z04-nq-QZe">
+                                            <rect key="frame" x="166.5" y="11.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="z04-nq-QZe" firstAttribute="centerX" secondItem="1fS-Vw-ACe" secondAttribute="centerX" id="U8D-Jm-b7z"/>
+                                        <constraint firstItem="z04-nq-QZe" firstAttribute="centerY" secondItem="1fS-Vw-ACe" secondAttribute="centerY" id="yOa-Fm-ceG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellLabel" destination="z04-nq-QZe" id="yET-bX-i6b"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x4z-ZL-mf4" id="0s5-b2-fg7"/>
+                            <outlet property="delegate" destination="x4z-ZL-mf4" id="hSb-5P-AA2"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="selectedCategroy" destination="6XC-gr-AsQ" id="K3W-Gy-vSs"/>
+                        <segue destination="M1M-2Z-XHe" kind="unwind" identifier="unwindSegueToImagePicker" unwindAction="unwindToImagePickerWithSegue:" id="aPN-QF-5wK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ulF-2g-0ke" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="M1M-2Z-XHe" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1223" y="-547"/>
+        </scene>
+        <!--Post Navigation Controller-->
+        <scene sceneID="tjf-KV-dVK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MFS-sg-Xtn" customClass="PostNavigationController" customModule="Snapchat_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="feed" id="ull-Pi-cWb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SwJ-ir-X6o">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="z2B-4d-Cwe" kind="relationship" relationship="rootViewController" id="pyT-Ig-6e7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Q5-Y1-J0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218.40000000000001" y="293.70314842578711"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="post" width="32" height="32"/>
+        <image name="feed" width="288" height="288"/>
+        <image name="goButton" width="132" height="130"/>
+        <image name="post" width="418.90908813476562" height="418.90908813476562"/>
     </resources>
 </document>

@@ -21,12 +21,19 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
         super.didReceiveMemoryWarning()
     }
     
-
-    func selectImage(_ image: UIImage) {
-        //The image being selected is passed in as "image".
+    @IBAction func unwindToImagePicker(segue:UIStoryboardSegue) {
     }
     
+    func selectImage(_ image: UIImage) {
+        //The image being selected is passed in as "image".
+        performSegue(withIdentifier: "postImage", sender: image)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let image = sender as? UIImage, let destination = segue.destination as? ImagePostingTableViewController {
+            destination.imageToPost = image
+        }
+    }
     
     //DON'T MODIFY CODE HERE AND BELOW!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
