@@ -6,7 +6,7 @@ Monday, October 22nd at 11:59pm
 ## Description ##
 In this project, you will be making a Snapchat Clone! Users should be able to take a picture, post to a feed, and then be able to view all the posts in a feed in the "Snap" style of clicking on an image, viewing it, and not being able to see it again. Here are screenshots of our staff version of part 1. 
 
-![alt text](/README-images/preview.png)
+![alt text](./README-images/preview.png)
 
 ## Homework 3 Structure ##
 You might be confused, we haven't taught you anything about using the camera or data storage, so how are you supposed to do this project?
