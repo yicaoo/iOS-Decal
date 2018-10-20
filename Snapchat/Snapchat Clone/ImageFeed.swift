@@ -2,13 +2,14 @@
 //  imageFeed.swift
 //  snapChatProject
 //
-//  Created by Akilesh Bapu on 2/27/17.
+//  Created by Akilesh Bapu on 2/27/17. Modified by Yi on 10/20/18.
 //  Copyright © 2017 org.iosdecal. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
+/*snap class to store each snaps's info. More fields to be added. */
 class Snap {
     let image: UIImage
     let timeStamp: Date

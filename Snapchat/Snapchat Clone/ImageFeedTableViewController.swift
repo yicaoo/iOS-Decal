@@ -23,7 +23,6 @@ class ImageFeedTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
        return threads[threadNames[section]]?.count ?? 0
     }
     
@@ -32,18 +31,18 @@ class ImageFeedTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: StoryboardConstant.feedcell, for: indexPath)
         if let feedCell = cell as? FeedTableViewCell, let snaps = threads[threadNames[indexPath.section]] {
             let snap = snaps[indexPath.row]
             // read status
             if snap.read {
-                feedCell.readStatus.image = UIImage(named: "read")
+                feedCell.readStatus.image = UIImage(named: ImageCellConstant.read)
             } else {
-                feedCell.readStatus.image = UIImage(named: "unread")
+                feedCell.readStatus.image = UIImage(named: ImageCellConstant.unread)
             }
             // time interval
-            let elapsedMin = Int(Date().timeIntervalSince(snap.timeStamp)) / 60
-            feedCell.timeStamp.text = "\(elapsedMin) Minute Ago"
+            let elapsedMin = Int(Date().timeIntervalSince(snap.timeStamp)) / ImageCellConstant.min
+            feedCell.timeStamp.text = "\(elapsedMin)" + ImageCellConstant.timeString
         }
         return cell
     }
@@ -53,20 +52,29 @@ class ImageFeedTableViewController: UITableViewController {
             let snap = snaps[indexPath.row]
             if !snap.read {
             snap.markAsRead()
-            performSegue(withIdentifier: "displayImage", sender: snap)
+            performSegue(withIdentifier: StoryboardConstant.displayImageSegue, sender: snap)
             //tableView.reloadRows(at: [indexPath], with: .none)
             }
         }
     }
     
-    
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let snap = sender as? Snap, let destination = segue.destination as? ViewImageViewController {
             destination.fullImage = snap.image
         }
     }
     
-
+    // MARK: - Constants
+    private struct StoryboardConstant {
+        static let feedcell = "feedCell"
+        static let displayImageSegue = "displayImage"
+    }
+    
+    private struct ImageCellConstant {
+        static let read = "read"
+        static let unread = "unread"
+        static let timeString = " Minute Ago"
+        static let min = 60
+    }
 }

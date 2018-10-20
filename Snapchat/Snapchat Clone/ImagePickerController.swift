@@ -26,7 +26,7 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
     
     func selectImage(_ image: UIImage) {
         //The image being selected is passed in as "image".
-        performSegue(withIdentifier: "postImage", sender: image)
+        performSegue(withIdentifier: StoryboardConstant.postImage, sender: image)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,8 +42,8 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pickImageCell", for: indexPath) as? ImageCollectionViewCell else {
-            print("error dequeuing cell at index path \(indexPath)")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryboardConstant.pickImageCell, for: indexPath) as? ImageCollectionViewCell else {
+            print(StoryboardConstant.dequeueErrorMessage+"\(indexPath)")
             return UICollectionViewCell()
         }
         cell.image.image = allImages[indexPath.row]
@@ -53,6 +53,12 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
         if let selectedCell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
             selectImage(selectedCell.image.image!)
         }
-        
+    }
+    
+    // MARK : -Constants
+    private struct StoryboardConstant {
+        static let postImage = "postImage"
+        static let pickImageCell = "pickImageCell"
+        static let dequeueErrorMessage = "error dequeuing cell at index path "
     }
 }
