@@ -12,18 +12,21 @@ import UIKit
 class Snap {
     let image: UIImage
     let timeStamp: Date
+    // sender will be added later
+    var read: Bool
+    
     init(image: UIImage, timeStamp: Date) {
         self.image = image
         self.timeStamp  = timeStamp
+        self.read = false
+    }
+    
+    func markAsRead() {
+        read = true
     }
 }
 
 var threads: [String: [Snap]] = ["memes": [], "dog spots": [], "random": []]
-// This file simply holds global variables right now. You may use it as is,
-// or come up with a better way to keep track of snaps (MVC is your friend!).
-
-// This is one way you can store snaps. Can you think of a better way?
-// var threads: [String: [UIImage]] = ["memes": [], "dog spots": [], "random": []]
 
 let threadNames = ["memes", "dog spots", "random"]
 

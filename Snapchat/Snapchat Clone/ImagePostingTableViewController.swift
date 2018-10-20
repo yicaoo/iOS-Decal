@@ -38,11 +38,9 @@ class ImagePostingTableViewController: UITableViewController {
     }
     
     @IBAction func postSelectedImage(_ sender: UIBarButtonItem) {
-        print("here")
         if let category = selectedCategroy.title, let image = imageToPost, let _ = threads[selectedCategroy.title!] {
             let snap = Snap(image: image, timeStamp: Date())
-           threads[category]?.append(snap)
-            print("!!!"+String(threads[category]!.count))
+            threads[category]?.append(snap)
             issuePostingAlert()
         }
     }

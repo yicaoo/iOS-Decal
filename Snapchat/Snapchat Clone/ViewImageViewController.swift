@@ -9,14 +9,23 @@
 import UIKit
 
 class ViewImageViewController: UIViewController {
-
+    var fullImage: UIImage?
+    @IBOutlet weak var imageDisplay: UIImageView! {
+        didSet {
+            if let image = fullImage {
+                imageDisplay.image = image
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToDismiss(_sender:)))
+        view.addGestureRecognizer(tap)
     }
-    //presented modally, add tap to dismiss itself!
-
+    @objc func tapToDismiss(_sender: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
