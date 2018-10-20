@@ -15,7 +15,6 @@ import UIKit
 // This is one way you can store snaps. Can you think of a better way?
 var threads: [String: [UIImage]] = ["memes": [], "dog spots": [], "random": []]
 
-
 let threadNames = ["memes", "dog spots", "random"]
 
 // The images used to populate the collection view in ImagePickerController
