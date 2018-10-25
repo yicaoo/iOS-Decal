@@ -4,7 +4,7 @@
 ## Overview ##
 In this homework, you will be connecting your snapchat project to the Firebase Realtime Database. You will begin by creating a Firebase account and downloading CocoaPods, if you haven't done so already. Then you will connect your app to your very own customized Firebase console. You will then implement the login and signup pages for your users. After that, you will enable your app to store and retrieve data from your Firebase console. You might find reviewing the lecture on Firebase to be quite useful for this assignment.
 
-![](/README-images/overview.jpg)
+![](./README-images/overview.jpg)
 
 ## Getting Started ##
 Download the starter code from this repository, as per usual. Then try running and launching the app on a simulator or an apple device. Play around and check out its current functionality. You will notice that when you click on the 'Login' or 'Signup' buttons, the app just directs you to the home page without doing any verification. In fact, you can successfully login or signup without putting any information at all! You will change this by the end of the homework. To get started, follow the following steps:
