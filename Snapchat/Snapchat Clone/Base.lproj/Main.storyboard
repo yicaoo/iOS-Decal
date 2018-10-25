@@ -235,9 +235,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
                                 <barButtonItem title="Posting To" id="2pp-FN-8yb"/>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="0eX-UG-k2s"/>
                                 <barButtonItem title="Category" id="6XC-gr-AsQ"/>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="RO2-PL-5n1"/>
                                 <barButtonItem title="Item" image="goButton" id="0Bw-tS-dCT">
                                     <connections>
                                         <action selector="postSelectedImage:" destination="x4z-ZL-mf4" id="Sm7-lS-TXl"/>
