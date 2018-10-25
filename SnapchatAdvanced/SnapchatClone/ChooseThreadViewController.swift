@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

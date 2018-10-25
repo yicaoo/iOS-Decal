@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 
 var threads: [String: [Post]] = ["Memes": [], "Dog Spots": [], "Random": []]
 
@@ -39,7 +41,6 @@ func clearThreads() {
 }
 
 /*
- TODO:
  
  Store the data for a new post in the Firebase database.
  Make sure you understand the hierarchy of the Posts tree before attempting to write any data to Firebase!
@@ -60,33 +61,33 @@ func clearThreads() {
  */
 func addPost(postImage: UIImage, thread: String, username: String) {
     // Uncomment the lines beneath this one if you've already connected Firebase:
-//    let dbRef = Database.database().reference()
-//    let data = UIImageJPEGRepresentation(postImage, 1.0)
-//    let path = "Images/\(UUID().uuidString)"
-//
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
-//    let dateString = dateFormatter.string(from: Date())
-//    let postDict: [String:AnyObject] = ["imagePath": path as AnyObject,
-//                                        "username": username as AnyObject,
-//                                        "thread": thread as AnyObject,
-//                                        "date": dateString as AnyObject]
-    // YOUR CODE HERE
+    let dbRef = Database.database().reference()
+    let data = UIImageJPEGRepresentation(postImage, 1.0)
+    let path = "Images/\(UUID().uuidString)"
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+    let dateString = dateFormatter.string(from: Date())
+    let postDict: [String:AnyObject] = ["imagePath": path as AnyObject,
+                                        "username": username as AnyObject,
+                                        "thread": thread as AnyObject,
+                                        "date": dateString as AnyObject]
+    store(data: data, toPath: path)
 }
 
 
-// TODO:
-// Uncomment the lines inside this function. This is the function that actually sends
+
+// This is the function that actually sends
 // your data to Firebase's Storage to store it using the given 'path' as it's
 // reference.
 //
 func store(data: Data?, toPath path: String) {
-//    let storageRef = Storage.storage().reference()
-//    storageRef.child(path).putData(data!, metadata: nil) { (metadata, error) in
-//        if let error = error {
-//            print(error)
-//        }
-//    }
+    let storageRef = Storage.storage().reference()
+    storageRef.child(path).putData(data!, metadata: nil) { (metadata, error) in
+        if let error = error {
+            print(error)
+        }
+    }
 }
 
 

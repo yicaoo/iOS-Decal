@@ -38,15 +38,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
-                    Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-                        guard let user = authResult?.user else { return }
-                        
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    changeRequest?.displayName = name
+                    changeRequest?.commitChanges { (error) in
+                        // ...
                     }
+                    // The user account has been successfully created. Now, update the user's name in
+                    // firebase and then perform a segue to the main page. Note,
                     let alertController = UIAlertController(title: "Sign Up Success", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    self.performSegue(withIdentifier: segueSignUpToMainPage, sender: self)
+                    self.present(alertController, animated: true, completion: {
+                        self.performSegue(withIdentifier: segueSignUpToMainPage, sender: self)
+                    })
+
                 } else if password != verifiedPassword {
                     let alertController = UIAlertController(title: "Verification Error.", message: "The two passwords do not match.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -62,8 +65,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameTextField.delegate = self
