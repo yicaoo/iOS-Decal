@@ -113,7 +113,7 @@ We can now authenticate users successfully, but we don't have any since we can't
 ## Part 2: Storing Posts ##
 Hooray!! We now have users signing up and logging into our app. Christmas came early this year. However, they can't store any of their posts to our database yet. Not for long. Go to your Firebase console and click on the 'Storage' option from the menu on your left. Click on 'GET STARTED'. This should get you ready to store your files. All the files that you post to Firebase will be stored in here. Now let us set up the database. Remember from lecture that the Firebase database returns all your data as a json file. You can get the data by casting it in a dictionary and getting the information you want. When you are done setting up the database, it will look something like this:
 
-![](/README-images/database.png)
+![](./README-images/database.png)
 
 Open CurrentUser.swift in the 'Model' folder and import FirebaseDatabase and FirebaseAuth at the top. Then uncomment the lines that are beneath the first TODO for the class. After that, implement the next two functions according to the instructions in their TODOs. You're almost there!
 
