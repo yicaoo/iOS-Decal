@@ -115,7 +115,6 @@ func getPosts(user: CurrentUser, completion: @escaping ([Post]?) -> Void) {
             if let posts = snapshot.value as? [String:AnyObject] {
                 user.getReadPostIDs(completion: { (ids) in
                     for postKey in posts.keys {
-                        print("!!! \(posts.keys.count)")
                         if let currentPost = posts[postKey] {
                             var readStatus = false
                             if ids.contains(postKey) {

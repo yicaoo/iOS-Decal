@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ImagePickerController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -19,7 +20,15 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
         self.imageCollectionView.collectionViewLayout = ImageFlowLayout.init()
         
     }
-
+    @IBAction func signOutSelected(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        performSegue(withIdentifier: "reloginSegue", sender: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -62,8 +71,8 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ChooseThreadViewController
-        destination.chosenImage = selectedImage
-        
+        if let destination = segue.destination as? ChooseThreadViewController {
+            destination.chosenImage = selectedImage
+        }
     }
 }

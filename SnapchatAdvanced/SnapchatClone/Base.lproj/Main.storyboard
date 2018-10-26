@@ -192,13 +192,21 @@
                             <constraint firstItem="wYC-QR-9eI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="n4a-lM-QoC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Snapchat 2.0" id="1DI-gn-L1G"/>
+                    <navigationItem key="navigationItem" title="Snapchat 2.0" id="1DI-gn-L1G">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="3Cl-0x-Vw6">
+                            <connections>
+                                <action selector="signOutSelected:" destination="BYZ-38-t0r" id="qr8-qg-3m3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageCollectionView" destination="wYC-QR-9eI" id="lwC-Kg-QfQ"/>
                         <segue destination="4ll-MP-AHU" kind="show" identifier="imagePickerToChooseThread" id="YKG-5k-lSO"/>
+                        <segue destination="N0r-kO-eA5" kind="unwind" identifier="reloginSegue" unwindAction="unwindToLoginWithSegue:" id="gj0-gi-gk2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="N0r-kO-eA5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-612" y="-403"/>
         </scene>

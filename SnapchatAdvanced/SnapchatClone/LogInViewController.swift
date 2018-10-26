@@ -14,7 +14,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
-    
     var userEmail = ""
     var userPassword = ""
     
@@ -34,6 +33,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             // you'll need to use `emailText` and `passwordText`, and a method found in this
             Auth.auth().signIn(withEmail: emailText, password: passwordText) { (user, error) in
                 if error == nil {
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
                 } else {
                     let alertController = UIAlertController(title: "Log In Error", message:
@@ -66,22 +67,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // Authenticate users automatically if they already signed in earlier.
     // Just check if the current user is nil using firebase and if not, perform a segue.
     override func viewDidAppear(_ animated: Bool) {
-       
-        if let _  = Auth.auth().currentUser {
-            print(Auth.auth().currentUser?.email)
-            performSegue(withIdentifier: segueLogInToMainPage, sender: self)
-        } else {
-            handleLogout()
+       Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
+            }
         }
     }
-    
-    private func handleLogout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let logoutError {
-            print(logoutError)
+
+    // Called when we unwind from the ChooseThreadViewController
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
         }
-    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.emailTextField {
