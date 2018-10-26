@@ -66,11 +66,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // Authenticate users automatically if they already signed in earlier.
     // Just check if the current user is nil using firebase and if not, perform a segue.
     override func viewDidAppear(_ animated: Bool) {
-        /*
+       
         if let _  = Auth.auth().currentUser {
+            print(Auth.auth().currentUser?.email)
             performSegue(withIdentifier: segueLogInToMainPage, sender: self)
+        } else {
+            handleLogout()
         }
-        */
+    }
+    
+    private func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

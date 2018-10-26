@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import Firebase
 
 var threads: [String: [Post]] = ["Memes": [], "Dog Spots": [], "Random": []]
 
@@ -60,7 +61,6 @@ func clearThreads() {
  
  */
 func addPost(postImage: UIImage, thread: String, username: String) {
-    // Uncomment the lines beneath this one if you've already connected Firebase:
     let dbRef = Database.database().reference()
     let data = UIImageJPEGRepresentation(postImage, 1.0)
     let path = "Images/\(UUID().uuidString)"
@@ -72,6 +72,8 @@ func addPost(postImage: UIImage, thread: String, username: String) {
                                         "username": username as AnyObject,
                                         "thread": thread as AnyObject,
                                         "date": dateString as AnyObject]
+    
+    dbRef.child(firPostsNode).childByAutoId().setValue(postDict)
     store(data: data, toPath: path)
 }
 
@@ -90,12 +92,7 @@ func store(data: Data?, toPath path: String) {
     }
 }
 
-
-
-
 /*
- TODO:
- 
  This function should query Firebase for all posts and return an array of Post objects.
  You should use the function 'observeSingleEvent' (with the 'of' parameter set to .value) to get a snapshot of all of the nodes under "Posts".
  If the snapshot exists, store its value as a dictionary of type [String:AnyObject], where the string key corresponds to the ID of each post.
@@ -111,22 +108,49 @@ func store(data: Data?, toPath path: String) {
  Remember to use constants defined in Strings.swift to refer to the correct path!
  */
 func getPosts(user: CurrentUser, completion: @escaping ([Post]?) -> Void) {
-    
+    let dbRef = Database.database().reference()
+    var postArray: [Post] = []
+    dbRef.child(firPostsNode).observeSingleEvent(of: .value, with: { snapshot -> Void in
+        if snapshot.exists() {
+            if let posts = snapshot.value as? [String:AnyObject] {
+                user.getReadPostIDs(completion: { (ids) in
+                    for postKey in posts.keys {
+                        print("!!! \(posts.keys.count)")
+                        if let currentPost = posts[postKey] {
+                            var readStatus = false
+                            if ids.contains(postKey) {
+                                readStatus = true
+                            }
+                            let postObj = Post(id: postKey, username: currentPost[firUsernameNode] as! String, postImagePath: currentPost[firImagePathNode] as! String, thread: currentPost[firThreadNode] as! String, dateString: currentPost[firDateNode] as! String, read: readStatus)
+                            postArray.append(postObj)
+                            print(postArray.count)
+                        } else {
+                            print("postkey invalid")
+                        }
+                    }
+                    completion(postArray)
+                })
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
+        }
+    })
 }
 
-// TODO:
-// Uncomment the lines in the function when you reach the appriopriate par in the README.
+
 func getDataFromPath(path: String, completion: @escaping (Data?) -> Void) {
-//    let storageRef = Storage.storage().reference()
-//    storageRef.child(path).getData(maxSize: 5 * 1024 * 1024) { (data, error) in
-//        if let error = error {
-//            print(error)
-//        }
-//        if let data = data {
-//            completion(data)
-//        } else {
-//            completion(nil)
-//        }
-//    }
+    let storageRef = Storage.storage().reference()
+    storageRef.child(path).getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+        if let error = error {
+            print(error)
+        }
+        if let data = data {
+            completion(data)
+        } else {
+            completion(nil)
+        }
+    }
 }
 

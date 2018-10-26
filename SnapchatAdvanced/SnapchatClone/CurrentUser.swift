@@ -25,9 +25,7 @@ class CurrentUser {
         username = currentUser?.displayName
         id = currentUser?.uid
     }
-
-
-    
+  
     /*
      Retrieve a list of post ID's that the user has already opened and return them as an array of strings.
      Note that our database is set up to store a set of ID's under the readPosts node for each user.
@@ -35,18 +33,29 @@ class CurrentUser {
      */
     func getReadPostIDs(completion: @escaping ([String]) -> Void) {
         var postArray: [String] = []
-        // YOUR CODE HERE
+     
+        dbRef.child(firUsersNode).child(id).child(firReadPostsNode).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                if let userDict = snapshot.value as? [String : Any] {
+                    for key in userDict.keys {
+                        postArray.append(userDict[key] as! String)
+                    }
+                }
+            }
+            print("# \(postArray.count)")
+            completion(postArray)
+        })
+
     }
+            
     
     /*
-     TODO:
-     
      Adds a new post ID to the list of post ID's under the user's readPosts node.
      This should be fairly simple - just create a new child by auto ID under the readPosts node and set its value to the postID (string).
      Remember to be very careful about following the structure of the User node before writing any data!
      */
     func addNewReadPost(postID: String) {
-        // YOUR CODE HERE
+        dbRef.child(firUsersNode).child(id).child(firReadPostsNode).childByAutoId().setValue(postID)
     }
     
 }

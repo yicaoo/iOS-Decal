@@ -24,7 +24,7 @@
 		9424724D1F910B3A007257E7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424724C1F910B3A007257E7 /* LogInViewController.swift */; };
 		9424724F1F910B4B007257E7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424724E1F910B4B007257E7 /* SignUpViewController.swift */; };
 		94B0FCCF1F96F7F3006A9627 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B0FCCE1F96F7F3006A9627 /* CurrentUser.swift */; };
-		F1FF121821825FB3007C9FF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1FF121721825FB3007C9FF4 /* GoogleService-Info.plist */; };
+		F1FECF9E2182CFAD0011838D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1FECF9D2182CFAD0011838D /* GoogleService-Info.plist */; };
 		F4F9237541F48B1F35D021B2 /* Pods_SnapchatProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C628ABD90FDEDFDC0319B83 /* Pods_SnapchatProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,7 @@
 		94B0FCCE1F96F7F3006A9627 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		A01DEF5422F234F78704A3C9 /* Pods-SnapchatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapchatProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnapchatProject/Pods-SnapchatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AE9AD309C165E5DA6ADE9A4C /* Pods-SnapchatProject.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapchatProject.test.xcconfig"; path = "Pods/Target Support Files/Pods-SnapchatProject/Pods-SnapchatProject.test.xcconfig"; sourceTree = "<group>"; };
-		F1FF121721825FB3007C9FF4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1FECF9D2182CFAD0011838D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +135,7 @@
 				417986C21E6631020050E1DF /* Assets.xcassets */,
 				6C53C7641E723D51004D15B6 /* Posts */,
 				4196F2D61E6509E8009916E4 /* Info.plist */,
-				F1FF121721825FB3007C9FF4 /* GoogleService-Info.plist */,
+				F1FECF9D2182CFAD0011838D /* GoogleService-Info.plist */,
 			);
 			path = SnapchatClone;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 			files = (
 				417986C31E6631020050E1DF /* Assets.xcassets in Resources */,
 				4196F2D01E6509E8009916E4 /* Main.storyboard in Resources */,
-				F1FF121821825FB3007C9FF4 /* GoogleService-Info.plist in Resources */,
+				F1FECF9E2182CFAD0011838D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
