@@ -2,21 +2,18 @@
 //  SignUpViewController.swift
 //  SnapchatProject
 //
-//  Created by Daniel Phiri on 10/13/17.
+//  Created by Daniel Phiri on 10/13/17. Modified by Yi.
 //  Copyright © 2017 org.iosdecal. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
+// Sign up user
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var passwordVerificationTextField: UITextField!
     
     var userEmail = ""
@@ -30,43 +27,55 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         guard let name = nameTextField.text else { return }
         guard let verifiedPassword = passwordVerificationTextField.text else { return }
         if email == "" || password == "" || name == "" || verifiedPassword == "" {
-            let alertController = UIAlertController(title: "Form Error.", message: "Please fill in form completely.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            present(alertController, animated: true, completion: nil)
-            
+            incompleteInfoAlert()
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
+                    // edit current user display name
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                     changeRequest?.displayName = name
                     changeRequest?.commitChanges { (error) in
                         if error == nil {
                                 // The user account has been successfully created. Now, update the user's name in
                                 // firebase and then perform a segue to the main page. Note,
-                                let alertController = UIAlertController(title: "Sign Up Success", message: error?.localizedDescription, preferredStyle: .alert)
+                                let alertController = UIAlertController(title: SnapCloneConstants.signupSuccess, message: error?.localizedDescription, preferredStyle: .alert)
                                 self.present(alertController, animated: true, completion: {
-                                    self.performSegue(withIdentifier: segueSignUpToMainPage, sender: self)
+                                    self.performSegue(withIdentifier: SnapCloneConstants.segueSignUpToMainPage, sender: self)
                                 })
                             }
-      
                         }
                 } else if password != verifiedPassword {
-                    let alertController = UIAlertController(title: "Verification Error.", message: "The two passwords do not match.", preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.passwordVerificationTextField.textColor = UIColor.red
-                    self.present(alertController, animated: true, completion: nil)
+                    self.passwordVerifyAlert()
                 } else {
-                    let alertController = UIAlertController(title: "Sign Up Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    if let error = error {
+                        self.signupErrorAlert(with: error)
+                    }
                 }
             }
         }
     }
 
+    private func incompleteInfoAlert() {
+        let alertController = UIAlertController(title: SnapCloneConstants.formEror, message: SnapCloneConstants.formIncomplete, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: SnapCloneConstants.ok, style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func passwordVerifyAlert() {
+        let alertController = UIAlertController(title: SnapCloneConstants.verificationError, message: SnapCloneConstants.passwordMismatch, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: SnapCloneConstants.ok, style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.passwordVerificationTextField.textColor = UIColor.red
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func signupErrorAlert(with error: Error) {
+        let alertController = UIAlertController(title: SnapCloneConstants.signupError, message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: SnapCloneConstants.ok, style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +83,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.passwordVerificationTextField.delegate = self
-
-        // Do any additional setup after loading the view.
     }
     
+    // after end editing, assign textfield variable into field info
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.emailTextField {
             if textField.text != nil {

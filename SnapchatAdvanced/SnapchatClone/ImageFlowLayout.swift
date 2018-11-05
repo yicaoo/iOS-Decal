@@ -20,7 +20,6 @@ class ImageFlowLayout: UICollectionViewFlowLayout {
     }
     
     func setupLayout() {
-        
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
         scrollDirection = .vertical
@@ -31,8 +30,7 @@ class ImageFlowLayout: UICollectionViewFlowLayout {
             
         }
         get {
-            let numberOfColumns: CGFloat = 2
-            
+            let numberOfColumns: CGFloat = SnapCloneConstants.numCol
             let itemWidth = (self.collectionView!.frame.width - (numberOfColumns - 1)) / numberOfColumns
             return CGSize(width: itemWidth, height: itemWidth)
         }

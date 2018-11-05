@@ -41,7 +41,7 @@ class Post {
         self.username = username
         self.thread = thread
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+        dateFormatter.dateFormat = SnapCloneConstants.dateFormat
         self.date = dateFormatter.date(from: dateString)!
         self.read = read
         self.postId = id
@@ -49,19 +49,19 @@ class Post {
     
     func getTimeElapsedString() -> String {
         let secondsSincePosted = -date.timeIntervalSinceNow
-        let minutes = Int(secondsSincePosted / 60)
+        let minutes = Int(secondsSincePosted / SnapCloneConstants.minInSec)
         if minutes == 1 {
             return "\(minutes) minute ago"
-        } else if minutes < 60 {
+        } else if minutes < Int(SnapCloneConstants.minInSec) {
             return "\(minutes) minutes ago "
-        } else if minutes < 120 {
+        } else if minutes < SnapCloneConstants.twoHours {
             return "1 hour ago"
-        } else if minutes < 24 * 60 {
-            return "\(minutes / 60) hours ago"
-        } else if minutes < 48 * 60 {
+        } else if minutes < SnapCloneConstants.minInDay {
+            return "\(minutes / Int(SnapCloneConstants.minInSec)) hours ago"
+        } else if minutes < 2*SnapCloneConstants.minInDay {
             return "1 day ago"
         } else {
-            return "\(minutes / 1440) days ago"
+            return "\(minutes / SnapCloneConstants.minInDay) days ago"
         }
         
     }

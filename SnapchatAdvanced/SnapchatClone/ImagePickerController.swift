@@ -26,7 +26,7 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
         } catch let logoutError {
             print(logoutError)
         }
-        performSegue(withIdentifier: "reloginSegue", sender: nil)
+        performSegue(withIdentifier: SnapCloneConstants.relogin, sender: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,12 +54,12 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pickImageCell", for: indexPath) as! imageCollectionVieCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SnapCloneConstants.pickImageCell, for: indexPath) as! imageCollectionVieCell
         cell.image.image = allImages[indexPath.row]
         
         /* UI modifications (not required). These simply make the
          corners of the cell rounded, instead of squared off */
-        cell.image.layer.cornerRadius = 5
+        cell.image.layer.cornerRadius = SnapCloneConstants.cornerRadius
         cell.image.layer.masksToBounds = true
         
         return cell
@@ -67,7 +67,7 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCell = collectionView.cellForItem(at: indexPath) as! imageCollectionVieCell
         selectImage(selectedCell.image.image!)
-        performSegue(withIdentifier: "imagePickerToChooseThread", sender: nil)
+        performSegue(withIdentifier: SnapCloneConstants.imagePickerChooseThread, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -2,7 +2,7 @@
 //  ChooseThreadViewController.swift
 //  SnapchatProject
 //
-//  Created by Paige Plander on 3/8/17.
+//  Created by Paige Plander on 3/8/17. Modified by Yi.
 //  Copyright © 2017 org.iosdecal. All rights reserved.
 //
 
@@ -27,8 +27,6 @@ class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
-    
-   
     /// Posts the image selected from the image picker to the
     /// thread specified by the user
     /// - Parameter sender: The send button (blue arrow button)
@@ -36,20 +34,16 @@ class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITable
         if let threadName = chosenThreadLabel.text, threadName != "" {
             if let imageToPost = chosenImage {
                addPost(postImage: imageToPost, thread: threadName, username: (Auth.auth().currentUser?.displayName)!)
-                performSegue(withIdentifier: "unwindToImagePicker", sender: nil)
+                performSegue(withIdentifier: SnapCloneConstants.unwindToPicker, sender: nil)
             }
         } else {
-            let alert = UIAlertController(title: "No thread selected", message: "You must select a thread to post your snap to.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            
+            nothingToPostAlert()
         }
     }
     
     // MARK: Tableview delegate and datasource methods
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chooseThreadCell") as! ChooseThreadTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SnapCloneConstants.chooseThreadCell) as! ChooseThreadTableViewCell
         cell.threadNameLabel.text = threadNames[indexPath.row]
         return cell
     }
@@ -60,5 +54,11 @@ class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenThreadLabel.text = threadNames[indexPath.row]
+    }
+    
+    private func nothingToPostAlert() {
+        let alert = UIAlertController(title: SnapCloneConstants.nothingSelected, message: SnapCloneConstants.nothingSelectedMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: SnapCloneConstants.dismiss, style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

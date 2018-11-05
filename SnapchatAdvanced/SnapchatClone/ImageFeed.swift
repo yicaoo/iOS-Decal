@@ -2,7 +2,7 @@
 //  imageFeed.swift
 //  SnapchatProject
 //
-//  Created by Akilesh Bapu on 2/27/17.
+//  Created by Akilesh Bapu on 2/27/17. Modified by Yi.
 //  Copyright © 2017 org.iosdecal. All rights reserved.
 //
 
@@ -12,20 +12,17 @@ import FirebaseDatabase
 import FirebaseStorage
 import Firebase
 
-var threads: [String: [Post]] = ["Memes": [], "Dog Spots": [], "Random": []]
+var threads: [String: [Post]] = [SnapCloneConstants.memes: [], SnapCloneConstants.dog: [], SnapCloneConstants.random: []]
 
-
-let threadNames = ["Memes", "Dog Spots", "Random"]
+let threadNames = [SnapCloneConstants.memes, SnapCloneConstants.dog, SnapCloneConstants.random]
 
 var allImages: [UIImage] = [#imageLiteral(resourceName: "cutePuppy"), #imageLiteral(resourceName: "berkAtNight"), #imageLiteral(resourceName: "meme1"), #imageLiteral(resourceName: "Campanile"), #imageLiteral(resourceName: "meme2"), #imageLiteral(resourceName: "dankMeme2"), #imageLiteral(resourceName: "amazingCutePuppy"), #imageLiteral(resourceName: "cutePuppy"), #imageLiteral(resourceName: "dirks"), #imageLiteral(resourceName: "dankMeme3")]
-
 
 func getPostFromIndexPath(indexPath: IndexPath) -> Post? {
     let sectionName = threadNames[indexPath.section]
     if let postsArray = threads[sectionName] {
         return postsArray[indexPath.row]
     }
-    print("No post at index \(indexPath.row)")
     return nil
 }
 
@@ -38,11 +35,10 @@ func addPostToThread(post: Post) {
 }
 
 func clearThreads() {
-    threads = ["Memes": [], "Dog Spots": [], "Random": []]
+    threads = [SnapCloneConstants.memes: [], SnapCloneConstants.dog: [], SnapCloneConstants.random: []]
 }
 
 /*
- 
  Store the data for a new post in the Firebase database.
  Make sure you understand the hierarchy of the Posts tree before attempting to write any data to Firebase!
  Each post node contains the following properties:
@@ -55,29 +51,22 @@ func clearThreads() {
  
  Create a dictionary with these four properties and store it as a new child under the Posts node (you'll need to create a child using an auto ID)
  
- Finally, save the actual data to the storage module by calling the store function below.
- 
- Remember, DO NOT USE ACTUAL STRING VALUES WHEN REFERENCING A PATH! YOU SHOULD ONLY USE THE CONSTANTS DEFINED IN STRINGS.SWIFT
- 
+ Finally, save the actual data to the storage module by calling the store function below.ß
  */
 func addPost(postImage: UIImage, thread: String, username: String) {
     let dbRef = Database.database().reference()
     let data = UIImageJPEGRepresentation(postImage, 1.0)
     let path = "Images/\(UUID().uuidString)"
-
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+    dateFormatter.dateFormat = SnapCloneConstants.dateFormat
     let dateString = dateFormatter.string(from: Date())
-    let postDict: [String:AnyObject] = ["imagePath": path as AnyObject,
-                                        "username": username as AnyObject,
-                                        "thread": thread as AnyObject,
-                                        "date": dateString as AnyObject]
-    
-    dbRef.child(firPostsNode).childByAutoId().setValue(postDict)
+    let postDict: [String:AnyObject] = [SnapCloneConstants.firImagePathNode: path as AnyObject,
+                                        SnapCloneConstants.firUsernameNode: username as AnyObject,
+                                        SnapCloneConstants.firThreadNode: thread as AnyObject,
+                                        SnapCloneConstants.firDateNode: dateString as AnyObject]
+    dbRef.child(SnapCloneConstants.firPostsNode).childByAutoId().setValue(postDict)
     store(data: data, toPath: path)
 }
-
-
 
 // This is the function that actually sends
 // your data to Firebase's Storage to store it using the given 'path' as it's
@@ -110,7 +99,7 @@ func store(data: Data?, toPath path: String) {
 func getPosts(user: CurrentUser, completion: @escaping ([Post]?) -> Void) {
     let dbRef = Database.database().reference()
     var postArray: [Post] = []
-    dbRef.child(firPostsNode).observeSingleEvent(of: .value, with: { snapshot -> Void in
+    dbRef.child(SnapCloneConstants.firPostsNode).observeSingleEvent(of: .value, with: { snapshot -> Void in
         if snapshot.exists() {
             if let posts = snapshot.value as? [String:AnyObject] {
                 user.getReadPostIDs(completion: { (ids) in
@@ -120,11 +109,10 @@ func getPosts(user: CurrentUser, completion: @escaping ([Post]?) -> Void) {
                             if ids.contains(postKey) {
                                 readStatus = true
                             }
-                            let postObj = Post(id: postKey, username: currentPost[firUsernameNode] as! String, postImagePath: currentPost[firImagePathNode] as! String, thread: currentPost[firThreadNode] as! String, dateString: currentPost[firDateNode] as! String, read: readStatus)
+                            let postObj = Post(id: postKey, username: currentPost[SnapCloneConstants.firUsernameNode] as! String, postImagePath: currentPost[SnapCloneConstants.firImagePathNode] as! String, thread: currentPost[SnapCloneConstants.firThreadNode] as! String, dateString: currentPost[SnapCloneConstants.firDateNode] as! String, read: readStatus)
                             postArray.append(postObj)
-                            print(postArray.count)
                         } else {
-                            print("postkey invalid")
+                            print(SnapCloneConstants.invalidPostkey)
                         }
                     }
                     completion(postArray)
@@ -141,7 +129,7 @@ func getPosts(user: CurrentUser, completion: @escaping ([Post]?) -> Void) {
 
 func getDataFromPath(path: String, completion: @escaping (Data?) -> Void) {
     let storageRef = Storage.storage().reference()
-    storageRef.child(path).getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+    storageRef.child(path).getData(maxSize: Int64(SnapCloneConstants.imageSize)) { (data, error) in
         if let error = error {
             print(error)
         }

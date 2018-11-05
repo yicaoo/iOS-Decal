@@ -107,7 +107,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
             navigationController?.navigationBar.isHidden = true
             tabBarController?.tabBar.isHidden = true
         } else {
-            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            let _ = MBProgressHUD.showAdded(to: view, animated: true)
             getDataFromPath(path: post.postImagePath, completion: { (data) in
                 if let data = data {
                     let image = UIImage(data: data)
@@ -124,7 +124,6 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: Table view delegate and datasource methods
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return threadNames.count
     }
@@ -134,13 +133,13 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SnapCloneConstants.postcell, for: indexPath) as! PostsTableViewCell
         if let post = getPostFromIndexPath(indexPath: indexPath) {
             if post.read {
-                cell.readImageView.image = UIImage(named: "read")
+                cell.readImageView.image = UIImage(named: SnapCloneConstants.read)
             }
             else {
-                cell.readImageView.image = UIImage(named: "unread")
+                cell.readImageView.image = UIImage(named: SnapCloneConstants.unread)
             }
             cell.usernameLabel.text = post.username
             cell.timeElapsedLabel.text = post.getTimeElapsedString()
@@ -157,10 +156,8 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         if let post = getPostFromIndexPath(indexPath: indexPath), !post.read {
             presentPostImage(forPost: post)
             post.read = true
-            
             // Adding the selected post as one of the current user's read posts
             currentUser.addNewReadPost(postID: post.postId)
-            
             // Reloading the cell that the user tapped so the unread/read image updates
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
